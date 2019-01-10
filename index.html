@@ -10,12 +10,16 @@
 <title>Ridin' That Train</title>
 </head>
 <body>
-  <header class="container-fluid">
+  <div class="container-fluid">
+
+    <!-- Jumbotron Header -->
 
     <header class="jumbotron bg-primary text-light">
       <h1 class="h1 text-center">Trains, Trains, Trains</h1>
-      <p class="lead text-center">The web site that lets the user decide when the trains will come.</p>
+      <p class="lead text-center">The company that lets the riders decide when their trains will come.</p>
     </header>
+
+    <!-- Train Table -->
 
     <div class="card">
       <h3 class="card-header bg-primary text-light">Current Train Schedule</h3>
@@ -35,6 +39,8 @@
       </div>
     </div>
 
+    <!-- Form -->
+
     <div class="card">
       <h3 class="card-header bg-primary"></h3>
       <div class="card-body">
@@ -53,9 +59,27 @@
     </div>
 
 
+      <!-- Modal for submit button confirm -->
 
-
-
+    <div id="myModal" class="modal" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header bg-primary text-light">
+            <h5 class="modal-title">Train Added</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Thank you.</p>
+          </div>
+          <div class="modal-footer  bg-primary">
+            
+            <button type="button" class="btn btn-outline-light" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
   </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

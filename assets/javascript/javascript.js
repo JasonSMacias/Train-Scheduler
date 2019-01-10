@@ -34,5 +34,6 @@ $("#submit-button").on("click", function(event) {
   database.ref().push(newTrain);
   console.log(newTrain);
 
-
+  // Toggle modal
+  $('#myModal').modal('toggle');
 });
