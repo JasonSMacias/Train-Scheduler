@@ -59,14 +59,17 @@ database.ref().on("child_added", function(childSnapshot) {
   console.log(trainDestination);
   console.log(trainStart);
   console.log(trainFrequency);
+  // setting up a variable that contains the current time
+
+  var currentTime = /* pull current military time */;
 
   // Calculate next arrival ********
-    var trainNext = 0;
+    var trainNext =  currentTime - ((currentTime - trainStart) % trainFrequency) + trainFrequency;
 
   // Calculate minutes away ********
-    var trainAway = 0;
+    var trainAway = trainNext - currentTime;
 
-  // Create the new row (row items with unfinished variables commented for now) ***************
+  // Create the new row 
   var newRow = $("<tr>").append(
     $("<td>").text(trainName),
     $("<td>").text(trainDestination),
