@@ -59,23 +59,38 @@ database.ref().on("child_added", function(childSnapshot) {
   console.log(trainDestination);
   console.log(trainStart);
   console.log(trainFrequency);
-  // setting up a variable that contains the current time
 
-  var currentTime = /* pull current military time */;
+  // First Time (pushed back 1 year to make sure it comes before current time)
+    var trainStartConverted = moment(trainStart, "HH:mm").subtract(1, "years");
+    console.log(trainStartConverted);
 
-  // Calculate next arrival ********
-    var trainNext =  currentTime - ((currentTime - trainStart) % trainFrequency) + trainFrequency;
+    // Current Time
+    var currentTime = moment();
+    console.log("CURRENT TIME: " + moment(currentTime).format("HH:mm"));
 
-  // Calculate minutes away ********
-    var trainAway = trainNext - currentTime;
+    // Difference between the times
+    var diffTime = moment().diff(moment(trainStartConverted), "minutes");
+    console.log("DIFFERENCE IN TIME: " + diffTime);
+
+    // Time apart (remainder)
+    var tRemainder = diffTime % trainFrequency;
+    console.log(tRemainder);
+
+    // Minute Until Train
+    var tMinutesTillTrain = trainFrequency - tRemainder;
+    console.log("MINUTES TILL TRAIN: " + tMinutesTillTrain);
+
+    // Next Train
+    var nextTrain = moment().add(tMinutesTillTrain, "minutes");
+    console.log("ARRIVAL TIME: " + moment(nextTrain).format("hh:mm"));
 
   // Create the new row 
   var newRow = $("<tr>").append(
     $("<td>").text(trainName),
     $("<td>").text(trainDestination),
     $("<td>").text(trainFrequency),
-    $("<td>").text(trainNext),
-    $("<td>").text(trainAway),
+    $("<td>").text(nextTrain),
+    $("<td>").text(tMinutesTillTrain),
   );
 
   // Append the new row to the table
