@@ -32,8 +32,50 @@ $("#submit-button").on("click", function(event) {
 
   // pushes new train object to firebase & console logs
   database.ref().push(newTrain);
-  console.log(newTrain);
+  console.log(newTrain.destination);
 
   // Toggle modal
   $('#myModal').modal('toggle');
+
+  // Clear html inputs
+  $("#train-name-input").val("");
+  $("#destination-input").val("");
+  $("#first-train-time-input").val("");
+  $("#frequency-input").val("");
+});
+
+// Create Firebase event for adding employee to the database and a row in the html when a user adds an entry
+database.ref().on("child_added", function(childSnapshot) {
+  console.log(childSnapshot.val());
+
+  // Store everything into a variable.
+  var trainName = childSnapshot.val().name;
+  var trainDestination = childSnapshot.val().destination;
+  var trainStart = childSnapshot.val().startTime;
+  var trainFrequency = childSnapshot.val().frequency;
+
+  // Logging train Info
+  console.log(trainName);
+  console.log(trainDestination);
+  console.log(trainStart);
+  console.log(trainFrequency);
+
+  // Calculate next arrival ********
+    // var trainNext
+
+  // Calculate minutes away ********
+    // var trainAway
+
+  // Create the new row (row items with unfinished variables commented for now) ***************
+  var newRow = $("<tr>").append(
+    $("<td>").text(trainName),
+    $("<td>").text(trainDestination),
+    $("<td>").text(trainFrequency),
+    // $("<td>").text(trainNext),
+    // $("<td>").text(trainAway),
+  );
+
+  // Append the new row to the table
+  $("#train-table-body").append(newRow);
+
 });
