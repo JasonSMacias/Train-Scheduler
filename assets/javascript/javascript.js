@@ -61,18 +61,18 @@ database.ref().on("child_added", function(childSnapshot) {
   console.log(trainFrequency);
 
   // Calculate next arrival ********
-    // var trainNext
+    var trainNext = 0;
 
   // Calculate minutes away ********
-    // var trainAway
+    var trainAway = 0;
 
   // Create the new row (row items with unfinished variables commented for now) ***************
   var newRow = $("<tr>").append(
     $("<td>").text(trainName),
     $("<td>").text(trainDestination),
     $("<td>").text(trainFrequency),
-    // $("<td>").text(trainNext),
-    // $("<td>").text(trainAway),
+    $("<td>").text(trainNext),
+    $("<td>").text(trainAway),
   );
 
   // Append the new row to the table
